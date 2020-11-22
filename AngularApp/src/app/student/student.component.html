@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="header">
+  <div class="A">STUDENT RESULTS SYSTEM</div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+            <form #studentForm="ngForm" (ngSubmit)= "onSubmit(studentForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]= "studentService.selectedStudent._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="name" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.name" placeholder="Enter Full Name" required>
+                  <label>Name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="usn" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.usn" placeholder="Eg : 1ms17cs045" required unique>
+                  <label>USN :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="sem1" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.sem1" placeholder="Enter Semester-1 SGPA" required>
+                  <label>Semester1 :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="sem2" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.sem2" placeholder="Enter Semester-2 SGPA" required>
+                  <label>Semester2 :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="sem3" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.sem3" placeholder="Enter Semester-3 SGPA" required>
+                  <label>Semester3 :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="sem4" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.sem4" placeholder="Enter Semester-4 SGPA" required>
+                  <label>Semester4 :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="sem5" #name="ngModel" [(ngModel)]= "studentService.selectedStudent.sem5" placeholder="Enter Semester-5 SGPA" required>
+                  <label>Semester5 :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" (click)= "resetForm(studentForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]= "!studentForm.valid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s7">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>USN</th>
+                      <th>Semester1</th>
+                      <th>Semester2</th>
+                      <th>Semester3</th>
+                      <th>Semester4</th>
+                      <th>Semester5</th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor= "let stud of studentService.students">
+                    <td>{{stud.name}}</td>
+                    <td>{{stud.usn}}</td>
+                    <td>{{stud.sem1}}</td>
+                    <td>{{stud.sem2}}</td>
+                    <td>{{stud.sem3}}</td>
+                    <td>{{stud.sem4}}</td>
+                    <td>{{stud.sem5}}</td>
+                    <td>
+                        <a class="action-btn one" (click)= "onEdit(stud)">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a class="action-btn two" (click)= "onDelete(stud._id,studentForm)">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
